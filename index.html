@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head> <meta charset="UTF-8"> 
+        <title>Program 5</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+        <!---<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--->
+    </head>
+
+    <body>
+        <h1>Select a Major</h1>
+        <p>
+            <button type='button' id="cit_btn">CIT Majors</button>
+            <button type='button' id="bus_btn">Business Majors</button>
+        </p>
+        <h2>We filter our dataset by major</h2>
+        <div id="tablediv"></div>
+    </body>
+
+
+<!--template-->
+<script id="table-template" type="text/x-handlebars-template">
+    <table cellspacing="12">
+        <tr>
+            <th>Name</th>
+            <th>Major</th>
+            <th>Midterm</th>
+            <th>Final</th>
+        </tr>
+        {{#each rows}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{major}}</td>
+                <td>{{midterm}}</td>
+                <td>{{final}}</td>
+            </tr>
+        {{/each}}
+    </table>
+</script>
+
+<script>
+    window.onload = async function() {
+        var url = "cit5students.json";
+        var response = await fetch(url);
+        if (response.ok) {
+
+            var data = await response.json();
+
+            var templateText = document.getElementById("table-template").innerHTML;
+            var compiledTemplateText = Handlebars.compile(templateText);
+            compiledHtml = compiledTemplateText({ rows: data })
+            document.getElementById("tablediv").innerHTML = compiledHtml;
+        } else {
+            document.querySelector("#tablediv").innerHTML = "Data not found";
+        }
+    }
+</script>
+</html>
