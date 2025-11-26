@@ -45,10 +45,13 @@
 
             var data = await response.json();
             console.log(data);
-
+            
+            var citdata = data.filter(citFilter => citFilter.major === "CIT");
+            console.log(citdata);
+            
             var templateText = document.getElementById("table-template").innerHTML;
             var compiledTemplateText = Handlebars.compile(templateText);
-            compiledHtml = compiledTemplateText({ rows: data })
+            compiledHtml = compiledTemplateText({ rows: citdata })
             document.getElementById("tablediv").innerHTML = compiledHtml;
         } else {
             document.querySelector("#tablediv").innerHTML = "Data not found";
