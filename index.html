@@ -44,6 +44,7 @@
         if (response.ok) {
 
             var data = await response.json();
+            console.log(data);
 
             var templateText = document.getElementById("table-template").innerHTML;
             var compiledTemplateText = Handlebars.compile(templateText);
@@ -54,4 +55,5 @@
         }
     }
 </script>
+
 </html>
