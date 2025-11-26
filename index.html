@@ -38,7 +38,7 @@
 </script>
 
 <script>
-    window.onload = async function() {
+    document.getElementById("cit_btn").onclick = async function() {
         var url = "cit5students.json";
         var response = await fetch(url);
         if (response.ok) {
@@ -55,5 +55,4 @@
         }
     }
 </script>
-
 </html>
