@@ -46,8 +46,8 @@
             var data = await response.json();
             console.log(data);
             
-            var citdata = data.filter(busFilter => busFilter.major === "BUS");
-            console.log(busdata);
+            var citdata = data.filter(citFilter => citFilter.major === "CIT");
+            console.log(citdata);
             
             var templateText = document.getElementById("table-template").innerHTML;
             var compiledTemplateText = Handlebars.compile(templateText);
@@ -65,12 +65,12 @@
             var data = await response.json();
             console.log(data);
             
-            var citdata = data.filter(citFilter => citFilter.major === "CIT");
-            console.log(citdata);
+            var citdata = data.filter(busFilter => busFilter.major === "BUS");
+            console.log(busdata);
             
             var templateText = document.getElementById("table-template").innerHTML;
             var compiledTemplateText = Handlebars.compile(templateText);
-            compiledHtml = compiledTemplateText({ rows: citdata })
+            compiledHtml = compiledTemplateText({ rows: busdata })
             document.getElementById("tablediv").innerHTML = compiledHtml;
         } else {
             document.querySelector("#tablediv").innerHTML = "Data not found";
