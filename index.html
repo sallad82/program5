@@ -46,6 +46,25 @@
             var data = await response.json();
             console.log(data);
             
+            var citdata = data.filter(busFilter => busFilter.major === "BUS");
+            console.log(busdata);
+            
+            var templateText = document.getElementById("table-template").innerHTML;
+            var compiledTemplateText = Handlebars.compile(templateText);
+            compiledHtml = compiledTemplateText({ rows: citdata })
+            document.getElementById("tablediv").innerHTML = compiledHtml;
+        } else {
+            document.querySelector("#tablediv").innerHTML = "Data not found";
+        }
+    }
+    document.getElementById("bus_btn").onclick = async function() {
+        var url = "cit5students.json";
+        var response = await fetch(url);
+        if (response.ok) {
+
+            var data = await response.json();
+            console.log(data);
+            
             var citdata = data.filter(citFilter => citFilter.major === "CIT");
             console.log(citdata);
             
