@@ -65,7 +65,7 @@
             var data = await response.json();
             console.log(data);
             
-            var citdata = data.filter(busFilter => busFilter.major === "BUS");
+            var busdata = data.filter(busFilter => busFilter.major === "BUS");
             console.log(busdata);
             
             var templateText = document.getElementById("table-template").innerHTML;
